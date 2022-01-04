@@ -189,7 +189,7 @@ public:
     virtual void messageReceived (const MemoryBlock& message) = 0;
 
 
-private:
+protected:
     //==============================================================================
     ReadWriteLock pipeAndSocketLock;
     std::unique_ptr<StreamingSocket> socket;
@@ -207,7 +207,7 @@ private:
     void connectionMadeInt();
     void connectionLostInt();
     void deliverDataInt (const MemoryBlock&);
-    bool readNextMessage();
+    virtual bool readNextMessage();
     int readData (void*, int);
 
     struct ConnectionThread;
@@ -218,7 +218,7 @@ private:
     std::shared_ptr<SafeAction> safeAction;
 
     void runThread();
-    int writeData (void*, int);
+    int writeData (const void*, int);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (InterprocessConnection)
 };

@@ -209,7 +209,7 @@ bool InterprocessConnection::sendMessage (const MemoryBlock& message)
     return writeData (messageData.getData(), (int) messageData.getSize()) == (int) messageData.getSize();
 }
 
-int InterprocessConnection::writeData (void* data, int dataSize)
+int InterprocessConnection::writeData (const void* data, int dataSize)
 {
     const ScopedReadLock sl (pipeAndSocketLock);
 

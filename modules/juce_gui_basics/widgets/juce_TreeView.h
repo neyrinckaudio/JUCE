@@ -598,12 +598,13 @@ public:
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OpennessRestorer)
     };
 
+    int getIndentX() const noexcept;
+
 private:
     //==============================================================================
     friend class TreeView;
 
     void updatePositions (int);
-    int getIndentX() const noexcept;
     void setOwnerView (TreeView*) noexcept;
     TreeViewItem* getTopLevelItem() noexcept;
     TreeViewItem* getDeepestOpenParentItem() noexcept;
