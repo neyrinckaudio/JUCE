@@ -265,6 +265,9 @@ bool MessageManager::existsAndIsCurrentThread() noexcept
 }
 
 //==============================================================================
+template <typename Fn> struct ScopeGuard : Fn { ~ScopeGuard() { Fn::operator()(); } };
+template <typename Fn> ScopeGuard (Fn) -> ScopeGuard<Fn>;
+
 //==============================================================================
 /*  The only safe way to lock the message thread while another thread does
     some work is by posting a special message, whose purpose is to tie up the event
